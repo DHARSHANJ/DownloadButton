@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Download Button with Progress Bar | CodingLab</title>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+  }
+  .button {
+    position: relative;
+    height: 95px;
+    width: 100%;
+    max-width: 360px;
+    background: #7D2AE8;
+    border-radius: 55px;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .button.active {
+    height: 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .button.active::before {
+    animation: layer 6s ease-in-out forwards;
+  }
+  @keyframes layer {
+    100% {
+      left: 0%;
+    }
+  }
+  .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    border-radius: 55px;
+    background: #5B13B9;
+  }
+  .button .content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    transition-delay: 0.2s;
+  }
+  .button.active .content {
+    transform: translateY(60px);
+  }
+  .content i,
+  .content .button-text {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 500;
+  }
+  .content .button-text {
+    font-size: 28px;
+    margin-left: 8px;
+  }
+  @media (max-width: 768px) {
+    .button {
+      width: 80%;
+    }
+    .button.active {
+      width: 90%;
+    }
+  }
+  @media (max-width: 480px) {
+    .button {
+      width: 70%;
+      height: 55px;
+
+    }
+    .button.active {
+      width: 70%;
+    }
+    .content i,
+    .content .button-text {
+      font-size: 20px;
+    }
+    .content .button-text {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 200px) {
+    .button {
+      width: 80%;
+      height: 7%;
+
+    }
+    .button.active {
+      width: 70%;
+    }
+    .content i,
+    .content .button-text {
+      font-size: 15px;
+    }
+    .content .button-text {
+      font-size: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="button">
+  <div class="content">
+    <i class="bx bx-cloud-download"></i>
+    <span class="button-text">Download</span>
+  </div>
+</div>
+<script>
+  let button = document.querySelector(".button");
+  button.addEventListener("click", () => {
+    button.classList.add("active");
+    setTimeout(() => {
+      button.classList.remove("active");
+      document.querySelector("i").classList.replace("bx-cloud-download", "bx-check-circle");
+      document.querySelector(".button-text").innerText = "Completed";
+    }, 6000);
+  });
+</script>
+</body>
+</html>
